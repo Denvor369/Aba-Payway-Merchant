@@ -1,0 +1,17 @@
+
+/* center-title-price.css — centers title & price above CTA on product detail + cards */
+.pd-info .pd-title,
+.pd-info .pd-price{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pd-actions{
+  display: flex;
+  justify-content: center;
+}
+/* For product cards */
+.product-card .product-title,
+.product-card .price{
+  text-align: center;
+}

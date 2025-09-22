@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PayWay QR Sanity Test (Inline)</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 24px; }
+    button { padding: 10px 14px; border-radius: 10px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+    label { display:block; margin: 8px 0 4px; }
+    input { padding: 6px 8px; width: 200px; }
+    #out { margin-top:16px; border:1px solid #ddd; border-radius:10px; padding:12px; min-height:200px; }
+    iframe { width:100%; height:640px; border:0; }
+  </style>
+</head>
+<body>
+  <h1>PayWay QR Sanity Test (Inline)</h1>
+  <p>This version avoids popups (useful if your browser blocks them).</p>
+
+  <label>Amount (USD)</label>
+  <input id="amt" type="number" step="0.01" value="1.00" />
+
+  <div style="margin-top:12px;">
+    <button id="btn">Open PayWay</button>
+  </div>
+
+  <div id="out"></div>
+
+  <script>
+    (function(){
+      const API_BASE = "http://localhost:3000"; // change if you used another port
+
+      function showHTML(htmlText){
+        const out = document.getElementById('out');
+        out.innerHTML = '<iframe sandbox="allow-forms allow-scripts allow-same-origin"></iframe>';
+        const f = out.querySelector('iframe');
+        const doc = f.contentWindow.document;
+        doc.open(); doc.write(htmlText); doc.close();
+      }
+
+      async function run() {
+        const amount = Number(document.getElementById('amt').value || 1).toFixed(2);
+        const out = document.getElementById('out');
+        out.textContent = 'Requesting PayWay...';
+        try {
+          const resp = await fetch(API_BASE + "/payway/create", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              amount: amount,
+              currency: "USD",
+              items: [{ name: "Test", qty: 1, price: amount }],
+              firstname: "Tester",
+              lastname: "User",
+              email: "tester@example.com",
+              phone: "+85500000000"
+            })
+          });
+          const text = await resp.text();
+          if (!resp.ok || !text) throw new Error("Bad response");
+
+          if (text.trim().startsWith("<")) {
+            showHTML(text);
+            return;
+          }
+          const data = JSON.parse(text);
+          if (data?.status?.code === "00") {
+            out.innerHTML = `
+              <div style="text-align:center">
+                <h2>Scan with ABA Mobile</h2>
+                <img src="${data.qrImage}" alt="ABA Pay QR" style="max-width:260px"/>
+                <div><a href="${data.abapay_deeplink}" style="display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;border:1px solid #ccc;text-decoration:none">Open ABA App</a></div>
+                <div style="color:#666;margin-top:10px;font-size:14px">Transaction ID: ${data.status.tran_id}</div>
+              </div>
+            `;
+          } else {
+            out.textContent = (data && (data.detail?.status?.message || data.error || JSON.stringify(data))) || "PayWay purchase failed";
+          }
+        } catch (e) {
+          console.error(e);
+          out.textContent = "Request failed. Is your server running on " + API_BASE + "?";
+        }
+      }
+
+      document.getElementById('btn').addEventListener('click', run);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+/* mobile-cta-fix.css
+   Makes the Add to Cart (.cta) always visible & clickable on touch devices.
+   Safe: affects only devices without hover.
+*/
+@media (hover: none) and (pointer: coarse) {
+  .product-card .cta {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+    position: static !important; /* if your CTA was absolutely positioned off-card */
+    z-index: 3 !important;
+  }
+
+  /* In case the site had hover-only reveal */
+  .product-card:hover .cta {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}

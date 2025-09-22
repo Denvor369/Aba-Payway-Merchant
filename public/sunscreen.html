@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="kh">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <script>(function(){
+  try{
+    var saved = localStorage.getItem('siteLang');
+    var lang = (saved==='kh'||saved==='en') ? saved : 'kh';
+    document.documentElement.setAttribute('lang', lang);
+  }catch(e){
+    document.documentElement.setAttribute('lang','kh');
+  }
+})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Darila Official</title>
+<meta name="description" content="Light, non-irritating sunscreen with 7 natural extracts. Protects against UVA/UVB.">
+<link rel="canonical" href="https://your-domain.com/sunscreen" />
+<meta property="og:title" content="Darila Sunscreen — Darila Official">
+<meta property="og:description" content="Light, non-irritating sunscreen with 7 natural extracts.">
+<meta property="og:image" content="https://your-domain.com/og/sunscreen-1200x630.jpg">
+<meta property="og:type" content="product">
+<meta name="twitter:card" content="summary_large_image">
+<link href="styles.css" rel="stylesheet"/>
+
+<style>
+/* Animated slider track */
+.pd-viewport{ position:relative; overflow:hidden; }
+.pd-viewport > img{ display:none !important; } /* hide legacy single image(s) */
+.pd-track{ display:flex; width:100%; height:100%; transition: transform 420ms ease; }
+.pd-track img{ flex:0 0 100%; width:100%; height:100%; object-fit:cover; display:block; }
+</style>
+<style>
+/* Khmer body font + immutable brand font */
+html[lang="kh"] body{ font-family: "Kantumruy","Kantumruy Pro","Noto Sans Khmer",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+.brand, .brand-gradient{ font-family: "Cal Sans", system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, sans-serif !important; }
+</style>
+<link rel="stylesheet" href="mobile-cta-fix.css">
+<link rel="stylesheet" href="cta2.uiverse.css?v=1">
+<script src="cta.reset.uiverse.js?v=1"></script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/image/darilalogo.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/image/darilalogo.png?v=2">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="comingsoon.disable.css?v=1">
+<script src="comingsoon.disable.js?v=1"></script>
+<style>
+    :root{ --pd-radius: 14px; }
+    .pd-wrap{ max-width:1200px; margin:88px auto 24px; padding:0 16px;
+      display:grid; grid-template-columns:1.3fr 1fr; gap:28px; }
+    @media (max-width: 900px){ .pd-wrap{ grid-template-columns:1fr; gap:18px; } }
+    .pd-gallery{ border:4px solid #fff; border-radius:var(--pd-radius); padding:12px; box-shadow: 0 21px 45px rgba(2,6,23,0.06); background:#ffffff; }
+    .pd-viewport{ position:relative; border-radius:calc(var(--pd-radius) - 4px);
+      overflow:hidden; clip-path: inset(0 round calc(var(--pd-radius) - 4px));
+      aspect-ratio: 1/1; background:#f6f7f9; }
+    .pd-viewport img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .pd-arrow{ position:absolute; top:50%; translate:0 -50%; width:40px; height:40px; border-radius:999px;
+      background:#c760db; color:#fff; border:2px solid #c760db; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; }
+    .pd-arrow.prev{ left:10px; } .pd-arrow.next{ right:10px; }
+    .pd-thumbs{ margin-top:12px; display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; }
+    .pd-thumbs button{ aspect-ratio:1/1; border-radius:10px; overflow:hidden; padding:0; border:2px solid #333; background:#222; cursor:pointer; }
+    .pd-thumbs img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .pd-thumbs button[aria-current="true"]{ border-color: var(--accent,#ff5aa7); }
+    .pd-info h1{ margin:4px 0 8px; font-weight:700; letter-spacing:-0.01em; }
+    .pd-price{ font-size:22px; font-weight:700; color: var(--accent,#ff5aa7); margin-bottom:16px; }
+    .pd-actions{ display:grid; gap:12px; max-width:360px; }
+    .pd-desc{ color: var(--muted,#6b6f76); margin-top:16px; line-height:1.6; }
+    .pd-breadcrumb{ max-width:1200px; margin: 6px auto 0; padding:0 16px; }
+    .pd-back{ color:#666; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+    .pd-back:hover{ color:#333; text-decoration:underline; }
+  
+    .product-card.bridge{ display: contents; }
+
+    .pd-more{ max-width:1200px; margin:22px auto 0; padding:0 16px; }
+</style>
+
+<style>
+.pd-info h1, .pd-info .pd-price{ text-align:center; margin-left:auto; margin-right:auto; }
+.pd-actions{ display:flex; justify-content:center; }
+
+.pd-desc{ white-space: pre-line; }
+</style></head>
+<body>
+<nav aria-label="Primary" class="nav" role="navigation"><input type="checkbox" id="burger" class="nav-burger-toggle" hidden>
+
+<div class="nav-inner">
+<a aria-label="Go to home" class="brand" href="index.html#home">
+<span class="brand-gradient">Darila Official</span>
+</a>
+<div class="nav-right">
+<div aria-hidden="false" class="cart"><span aria-live="polite" class="nav-qty" id="nav-cart-qty">0</span><label class="burger" for="burger" aria-label="Toggle menu"><span></span><span></span><span></span></label></div>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" id="navToggle">
+<span aria-hidden="true" class="hamburger"></span>
+</button>
+</div>
+<ul aria-hidden="true" class="nav-links" id="site-nav">
+<li><a data-i18n="nav.home" href="index.html#home">Home</a></li>
+<li><a data-i18n="nav.products" href="index.html#products">Products</a></li>
+<li><a data-i18n="nav.contact" href="index.html#contact">Contact</a></li>
+<li><a data-i18n="nav.cart" href="cart.html">Cart</a></li>
+<li class="nav-controls">
+<label class="sr-only" for="lang-switcher">Language</label>
+<select aria-label="Language switcher" id="lang-switcher">
+<option value="en">English</option>
+<option value="kh">ភាសាខ្មែរ</option>
+</select>
+</li>
+</ul>
+</div>
+</nav>
+<div class="pd-breadcrumb"><a class="pd-back" href="index.html#products">← Back to products</a></div>
+<main class="pd-wrap" data-id="sun1" data-price="4.8" data-title="Darila Sunscreen" data-title-kh="ដារ៉ីឡា សាន់ស្ក្រីន">
+<section aria-label="Product images" class="pd-gallery">
+<div class="pd-viewport">
+<img alt="Darila Sunscreen photo" id="main" src="image/sunscreen123.jpg"/>
+<div aria-label="Previous image" class="pd-arrow prev" role="button">‹</div>
+<div aria-label="Next image" class="pd-arrow next" role="button">›</div>
+</div>
+<div class="pd-thumbs" id="thumbs">
+<button aria-current="true" type="button"><img alt="Darila Sunscreen thumbnail 1" src="image/sunscreen123.jpg"/></button>
+<button aria-current="false" type="button"><img alt="Darila Sunscreen thumbnail 1" src="image/sunscreen1234.jpg"/></button>
+<button aria-current="true" type="button"><img alt="Darila Sunscreen thumbnail 1" src="image/sunscreen12345.jpg"/></button>
+<button aria-current="true" type="button"><img alt="Darila Sunscreen thumbnail 1" src="image/sunscreenfall.jpg"/></button>
+<button aria-current="true" type="button"><img alt="Darila Sunscreen thumbnail 1" src="image/sunscreentip.jpg"/></button>
+</div>
+</section>
+<section class="pd-info">
+<h1 data-title-kh="ដារ៉ីឡា សាន់ស្ក្រីន" data-title-en="Darila Sunscreen">Darila Sunscreen</h1>
+<div class="pd-price">$4.80</div>
+<div class="pd-shell" data-id="sun1" data-img="image/sunscreen123.jpg" data-price="4.8" data-title="Darila Sunscreen" ><img alt="" aria-hidden="true" src="image/sunscreen123.jpg" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;"/><div class="product-card bridge" data-id="sun1" data-price="4.8" data-title="Darila Sunscreen" data-title-kh="ដារ៉ីឡា សាន់ស្ក្រីន"><div class="pd-actions">
+<!-- use same CTA classes as grid; provide data-id so global script works -->
+<button aria-label="Add Darila Sunscreen to bag" class="cta add-and-gos" data-id="sun1" type="button">Add to Cart</button></div></div></div>
+<p class="pd-desc" data-desc-en="Darila Sunscreen
+Light formula sunscreen 
+Paraben-free
+No synthetic colors 
+Fragrance-free
+Alcohol-free
+Therefore, people with sensitive acne cannot clog the pores, do not cause acne and do not cause skin irritation.
+It’s great that Darila Sunscreen is formulated with 7 natural extracts and helps reduce inflammation, strengthen the skin, and provide hydration. Additionally, it offers protection against both UVA and UVB rays, making it a versatile 2-in-1 sunscreen." data-desc-kh="ដារីឡា សាន់ស្គ្រីន សារធាតុស្រាល
+
+ឡេការពារកម្តៅថ្ងៃ ដារីឡា សាន់ស្គ្រីន គឺជាប្រភេទឡេដែលមានសារធាតុស្រាល ល្អបំផុតសម្រាប់អ្នកដែលមានស្បែកងាយប្រតិកម្ម ឬប្រតិកម្មជាមួយសារធាតុបំប៉នមួយចំនួន។
+
+គ្មានសារធាតុកាត់
+គ្មានសារធាតុពណ៌សិប្បនិម្មិត
+គ្មានជាតិអាកុល
+គ្មានក្លិន
+
+ដូច្នេះ អ្នកដែលមានស្បែកងាយប្រតិកម្ម ឬស្បែកដែលមានមុន អាចប្រើប្រាស់បានដោយគ្មានការព្រួយបារម្ភ ព្រោះវាមិនស្ទះរន្ធញើស មិនបង្កឲ្យកើតមុន និងមិនធ្វើឲ្យរលាកស្បែកឡើយ។ អ្វីដែលកាន់តែអស្ចារ្យនោះ គឺ ដារីឡា សាន់ស្គ្រីន មានសារធាតុផ្សំពីធម្មជាតិចំនួន ៧ មុខ ដែលជួយកាត់បន្ថយការរលាក ជួយឲ្យស្បែករឹងមាំ និងផ្តល់សំណើមដល់ស្បែក។ លើសពីនេះទៅទៀត វាក៏ការពារបានទាំងកាំរស្មី UVA និង UVB ដែលធ្វើឲ្យវាក្លាយជាឡេការពារកម្តៅថ្ងៃ 2-in-1 ដ៏ល្អបំផុត។">ដារីឡា សាន់ស្គ្រីន សារធាតុស្រាល<br><br>ឡេការពារកម្តៅថ្ងៃ ដារីឡា សាន់ស្គ្រីន គឺជាប្រភេទឡេដែលមានសារធាតុស្រាល ល្អបំផុតសម្រាប់អ្នកដែលមានស្បែកងាយប្រតិកម្ម ឬប្រតិកម្មជាមួយសារធាតុបំប៉នមួយចំនួន។<br><br>គ្មានសារធាតុកាត់<br>គ្មានសារធាតុពណ៌សិប្បនិម្មិត<br>គ្មានជាតិអាកុល<br>គ្មានក្លិន<br><br>ដូច្នេះ អ្នកដែលមានស្បែកងាយប្រតិកម្ម ឬស្បែកដែលមានមុន អាចប្រើប្រាស់បានដោយគ្មានការព្រួយបារម្ភ ព្រោះវាមិនស្ទះរន្ធញើស មិនបង្កឲ្យកើតមុន និងមិនធ្វើឲ្យរលាកស្បែកឡើយ។ អ្វីដែលកាន់តែអស្ចារ្យនោះ គឺ ដារីឡា សាន់ស្គ្រីន មានសារធាតុផ្សំពីធម្មជាតិចំនួន ៧ មុខ ដែលជួយកាត់បន្ថយការរលាក ជួយឲ្យស្បែករឹងមាំ និងផ្តល់សំណើមដល់ស្បែក។ លើសពីនេះទៅទៀត វាក៏ការពារបានទាំងកាំរស្មី UVA និង UVB ដែលធ្វើឲ្យវាក្លាយជាឡេការពារកម្តៅថ្ងៃ 2-in-1 ដ៏ល្អបំផុត។</p>
+</section>
+</main><section aria-label="More products" class="pd-more reveal"><h2 class="product-title-main">Products</h2><div class="products-grid"><article class="product-card" data-id="fiber1" data-price="14" data-title="Darila Fiber" data-title-kh="ដារ៉ីឡា ហ្វៃបឺរ">
+<a aria-label="View Darila Fiber" class="product-link" href="fiber.html">
+<div class="img-wrap">
+<img alt="Fiber A" decoding="async" height="800" loading="lazy" src="image/2,soft opening copy.png" width="800"/>
+</div>
+<h3 class="product-title">Darila Fiber</h3>
+</a>
+<div class="price">$14.00</div>
+<button class="cta add-and-gos" data-id="fiber1" type="button">Add to Cart</button>
+</article><article class="product-card" data-id="mask1" data-price="9.00" data-title="Darila Mask" data-title-kh="ដារ៉ីឡា ម៉ាស់">
+<a aria-label="View Darila Mask" class="product-link" href="mask.html">
+<div class="img-wrap">
+<img alt="Darila Mask" decoding="async" height="800" loading="lazy" src="image/maskproduct.png" width="800"/>
+</div>
+<h3 class="product-title">Darila Mask</h3>
+</a>
+<div class="price">$9.00</div>
+<button class="cta add-and-gos" data-id="mask1" type="button">Add to Cart</button>
+</article></div></section>
+<section class="reveal" id="contact">
+<h2 class="contact-heading">Contact Us</h2>
+<main class="page">
+<section aria-labelledby="contact-heading" class="contact-section">
+<div class="contact-row" role="list">
+<a aria-label="Open Telegram" class="contact-card" href="https://t.me/DarilaOfficial" rel="noopener" target="_blank">
+<div class="img-frame"><img alt="Telegram logo" src="image/teicon.png"/></div>
+<p class="contact-label">Telegram</p>
+</a>
+<a aria-label="Open Messenger" class="contact-card" href="https://www.messenger.com/t/148313231704862" rel="noopener" target="_blank">
+<div class="img-frame"><img alt="Messenger logo" src="image/msgicon.png"/></div>
+<p class="contact-label">Messenger</p>
+</a>
+<a aria-label="Open Instagram" class="contact-card" href="https://www.instagram.com/darila_official?igsh=enZnM2tlMm16ODd0&utm_source=qr" rel="noopener" target="_blank">
+<div class="img-frame"><img alt="Instagram logo" src="image/igicon.png"/></div>
+<p class="contact-label">Instagram</p>
+</a>
+<a aria-label="Open WhatsApp" class="contact-card" href="https://wa.me/1234567890" rel="noopener" target="_blank">
+<div class="img-frame"><img alt="WhatsApp logo" src="image/waicon.png"/></div>
+<p class="contact-label">WhatsApp</p>
+</a>
+</div>
+<div class="phone-section">
+<h3 class="phone-header">
+<span class="phone-icon">📞</span> Phone Number:
+          </h3>
+<p class="phone-numbers"><b>+855</b> 10 986 636 - 15 204 333</p>
+</div>
+</section>
+</main>
+</section>
+</main>
+</section>
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="copyright">Copyright © 2025 By Darila Official</div>
+<div class="accept-line">
+<span class="accept-label">We Accept:</span>
+<div class="icons">
+<img alt="ABA Bank logo" class="pay-icon" src="image/aba.png"/>
+<img alt="Acleda logo" class="pay-icon" src="image/acleda.png"/>
+<img alt="TrueMoney logo" class="pay-icon" src="image/truemoney.png"/>
+<img alt="WingBank logo" class="pay-icon" src="image/wingbank.png"/>
+<img alt="Binance logo" class="pay-icon" src="image/binance.png"/>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+    // small helper to sync nav cart badge from localStorage on load
+    (function(){
+      try{
+        const bag = JSON.parse(localStorage.getItem('bag')||'[]');
+        const total = bag.reduce((s,i)=>s + Number(i.qty||0), 0);
+        var el = document.getElementById('nav-cart-qty'); if(el) el.textContent = total;
+      }catch(e){}
+    })();
+  </script>
+<script defer="" src="script.js"></script>
+<script>
+(function(){
+  const ctas = Array.from(document.querySelectorAll('.product-card .cta'));
+  ctas.forEach(el => {
+    if (!el || el.classList.contains('cartified')) return;
+    const cs = getComputedStyle(el);
+    const bg = cs.backgroundColor && cs.backgroundColor.trim();
+    const border = cs.borderColor && cs.borderColor.trim();
+    const color = cs.color && cs.color.trim() ? cs.color.trim() : '#fff';
+    const isTransparent = s => !s || s === 'transparent' || /rgba\(.+,\s*0\)$/.test(s);
+    let accent = el.dataset?.accent?.trim() || null;
+    if (!accent){
+      if (!isTransparent(bg) && bg) accent = bg;
+      else if (border && !isTransparent(border)) accent = border;
+      else accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff5aa7';
+    }
+    el.style.setProperty('--btn-color', accent);
+    el.style.setProperty('--btn-text', color);
+    el.classList.add('cartified');
+    if (isTransparent(bg)) el.classList.add('outline'); else el.classList.add('filled');
+    if (el.tagName.toLowerCase() === 'a' && !el.hasAttribute('role')) el.setAttribute('role','button');
+  });
+})();
+</script>
+<aside aria-hidden="true" aria-label="Shopping cart" class="mini-cart" id="mini-cart" role="dialog">
+<header class="mini-cart-header">
+<strong>Your Cart</strong>
+<button aria-label="Close" class="mini-close" id="mini-cart-close">✕</button>
+</header>
+<div class="mini-cart-list" id="mini-cart-list" tabindex="0">
+<div class="empty">Your Cart is empty</div>
+</div>
+<footer class="mini-cart-footer">
+<div class="subtotal"><span>Subtotal</span><strong id="mini-cart-sub">$0.00</strong></div>
+<div class="actions">
+<a class="btn" href="cart.html">Check Out</a>
+</div>
+</footer>
+</aside>
+<div aria-hidden="true" class="mini-overlay" id="mini-overlay"></div>
+<button aria-label="Open cart" class="floating-cart" id="floating-cart">
+<svg aria-hidden="true" height="20" viewbox="0 0 24 24" width="20"><path d="M7 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm10 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6.5 6h13l-1 6H8.5L6.5 6z" fill="currentColor"></path></svg>
+<span aria-live="polite" class="floating-qty" id="floating-cart-qty">0</span>
+</button>
+
+<script>
+<script>
+(function(){
+  const KEY = 'siteLang';
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  
+function applyLang(lang){
+  const isKh = (lang === 'kh');
+  document.documentElement.setAttribute('lang', isKh ? 'kh' : 'en');
+  document.querySelectorAll('.pd-desc[data-desc-en]').forEach(el => {
+    const en = el.getAttribute('data-desc-en') || '';
+    const kh = el.getAttribute('data-desc-kh') || '';
+    const txt = (isKh && kh) ? kh : en;
+    el.innerHTML = txt.replace(/\n/g,'<br>');
+  });
+  const sel = document.getElementById('lang-switcher');
+  if (sel) sel.value = lang;
+}
+);
+    $$('.pd-desc[data-desc-en]').forEach(el => { const en = el.getAttribute('data-desc-en')||''; const kh = el.getAttribute('data-desc-kh')||''; const txt = (isKh && kh ? kh : en); el.innerHTML = txt.replace(/\n/g,'<br>'); });
+    const sel = document.getElementById('lang-switcher');
+    if (sel) sel.value = lang;
+  }
+  function ensureSwitcher(){
+    let sel = document.getElementById('lang-switcher');
+    if (!sel){
+      const navRight = document.querySelector('.nav-right') || document.querySelector('.nav-controls') || document.querySelector('nav');
+      if (navRight){
+        sel = document.createElement('select');
+        sel.id = 'lang-switcher';
+        sel.setAttribute('aria-label','Language switcher');
+        sel.innerHTML = '<option value="en">English</option><option value="kh">ភាសាខ្មែរ</option>';
+        (navRight.appendChild ? navRight.appendChild(sel) : document.body.appendChild(sel));
+      }
+    }
+    sel && sel.addEventListener('change', (e)=>{
+      const lang = e.target.value === 'kh' ? 'kh' : 'en';
+      try{ localStorage.setItem(KEY, lang); }catch(_){}
+      applyLang(lang);
+    });
+  }
+  const saved = localStorage.getItem(KEY);
+  const initial = (saved==='kh'||saved==='en') ? saved : 'kh';
+  ensureSwitcher();
+  applyLang(initial);
+})();
+</script>
+<script>
+(function(){
+  const imgs = ["image/sunscreen123.jpg", "image/sunscreen1234.jpg", "image/sunscreen12345.jpg", "image/sunscreenfall.jpg", "image/sunscreentip.jpg" ];
+  let idx = 0;
+  const viewport = document.querySelector('.pd-viewport');
+  const thumbs = Array.from(document.querySelectorAll('#thumbs button'));
+
+  if (!viewport) return;
+  const track = document.createElement('div');
+  track.className = 'pd-track';
+  imgs.forEach(src => {
+    const el = document.createElement('img');
+    const fallbackAlt = (viewport.querySelector('img') && viewport.querySelector('img').getAttribute('alt')) || 'Product image';
+    el.alt = fallbackAlt; el.src = src; track.appendChild(el);
+  });
+  const prev = viewport.querySelector('.pd-arrow.prev');
+  const next = viewport.querySelector('.pd-arrow.next');
+  if (prev) viewport.insertBefore(track, prev); else viewport.appendChild(track);
+
+  function update(){
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    thumbs.forEach((b,k)=>b.setAttribute('aria-current', k===idx ? 'true' : 'false'));
+  }
+  function go(d){ idx = (idx + d + imgs.length) % imgs.length; update(); }
+
+  prev && prev.addEventListener('click', ()=>go(-1));
+  next && next.addEventListener('click', ()=>go(1));
+  thumbs.forEach((b,k)=>b.addEventListener('click', ()=>{ idx=k; update(); }));
+
+  update();
+})();
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var lang = (localStorage.getItem('siteLang')==='en') ? 'en' : 'kh';
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('.pd-desc[data-desc-en]').forEach(function(el){
+    var en = el.getAttribute('data-desc-en') || '';
+    var kh = el.getAttribute('data-desc-kh') || '';
+    var txt = (lang==='kh' && kh) ? kh : en;
+    el.innerHTML = txt.replace(/\n/g,'<br>');
+  });
+});
+</script>
+
+
+
+<script>
+// React to global language changes from script.js
+document.addEventListener('site:langchange', function(e){
+  try{
+    var lang = (e && e.detail && e.detail.lang) ? e.detail.lang : (localStorage.getItem('siteLang')||'kh');
+    document.documentElement.setAttribute('lang', lang);
+    document.querySelectorAll('.pd-desc[data-desc-en]').forEach(function(el){
+      var en = el.getAttribute('data-desc-en') || '';
+      var kh = el.getAttribute('data-desc-kh') || '';
+      var txt = (lang==='kh' && kh) ? kh : en;
+      el.innerHTML = txt.replace(/\n/g,'<br>');
+    });
+  }catch(_){}
+});
+</script>
+
+
+<script>
+(function(){
+  function updateDescByLang(lang){
+    try{
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('.pd-desc[data-desc-en]').forEach(function(el){
+        var en = el.getAttribute('data-desc-en') || '';
+        var kh = el.getAttribute('data-desc-kh') || '';
+        var txt = (lang==='kh' && kh) ? kh : en;
+        el.innerHTML = txt.replace(/
+/g,'<br>');
+      });
+    }catch(_){}
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var saved = localStorage.getItem('siteLang') || 'kh';
+    updateDescByLang(saved);
+    var sel = document.getElementById('lang-switcher');
+    if(sel){
+      sel.value = saved;
+      sel.addEventListener('change', function(e){
+        var lang = (e.target.value==='kh') ? 'kh' : 'en';
+        try{ localStorage.setItem('siteLang', lang); }catch(_){}
+        updateDescByLang(lang);
+      });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

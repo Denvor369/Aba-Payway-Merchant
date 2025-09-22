@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="kh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Checkout</title>
+
+  <!-- Set language BEFORE CSS/Fonts load so Khmer (Kantumruy) applies on first paint -->
+  <script>(function(){try{var urlLang=new URLSearchParams(location.search).get('lang');var stored=localStorage.getItem('siteLang')||localStorage.getItem('lang');var lang=(urlLang==='kh'||urlLang==='en')?urlLang:(stored==='kh'||stored==='en')?stored:'kh';document.documentElement.setAttribute('lang',lang==='kh'?'kh':'en');localStorage.setItem('siteLang',lang);localStorage.setItem('lang',lang);}catch(e){document.documentElement.setAttribute('lang','kh');}})();</script>
+
+  <!-- Site-wide styles (keep your original look) -->
+  <link rel="stylesheet" href="styles.css?v=7" />
+
+<script src="checkout.telegram.js" defer></script>
+
+  <!-- Khmer & Brand fonts -->
+  <link href="https://fonts.googleapis.com/css2?v=7" rel="stylesheet" />
+<script src="checkout.js"></script>
+<script>window.PAYWAY_API_BASE = "http://localhost:3000";</script> <!-- change port if needed -->
+
+<script src="tg-config.js"></script>
+<script src="checkout.telegram.js"></script>
+
+  <!-- Page-scoped styles -->
+  <link rel="stylesheet" href="checkout.css?v=7" />
+<script src="payway-guard.js"></script>
+<script src="payway-guard-auto.js"></script>
+
+<style>
+/* === MINI-CART ICON: PNG override (kills old SVG mask) === */
+.floating-cart::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:40px; height:40px;            /* adjust if needed */
+  background:
+    image-set(
+      url("image/cart-check-white.png") 1x,
+      url("image/cart-check-white@2x.png") 2x,
+      url("image/cart-check-white@3x.png") 3x
+    ) center / 70% no-repeat;
+  background-color: transparent !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  background-blend-mode: normal !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+}
+/* Optional: same icon in mini-cart header */
+.mini-cart-header{
+  position: relative;
+  padding-left: 40px; /* leaves space for the icon */
+}
+.mini-cart-header::before{
+  content:"";
+  position:absolute;
+  left:12px; top:50%; transform: translateY(-50%);
+  width:18px; height:18px;
+  background:
+    image-set(
+      url("image/cart-check-white.png") 1x,
+      url("image/cart-check-white@2x.png") 2x,
+      url("image/cart-check-white@3x.png") 3x
+    ) center / contain no-repeat;
+  -webkit-mask: none !important;
+  mask: none !important;
+  opacity:.95;
+}
+/* Hide any inline SVG left inside the button just in case */
+.floating-cart > svg { display:none !important; }
+</style>
+</head>
+<body class="checkout-page">
+  <!-- NAV (same structure as your front/cart pages) -->
+  <nav class="nav" role="navigation" aria-label="Primary"><input type="checkbox" id="burger" class="nav-burger-toggle" hidden>
+
+    <div class="nav-inner">
+      <a class="brand" href="index.html#home" aria-label="Go to home">
+        <span class="brand-gradient">Darila Official</span>
+
+      </a>
+
+      <div class="nav-right">
+        <div class="cart" aria-hidden="false"><label class="burger" for="burger" aria-label="Toggle menu"><span></span><span></span><span></span></label></div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <ul id="site-nav" class="nav-links" role="menu" aria-hidden="true">
+        <li role="none"><a role="menuitem" href="index.html#home" data-i18n="nav.home">Home</a></li>
+        <li role="none"><a role="menuitem" href="index.html#products" data-i18n="nav.products">Products</a></li>
+        <li role="none"><a role="menuitem" href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        <li role="none"><a role="menuitem" href="cart.html" data-i18n="nav.cart">Cart</a></li>
+        <li class="nav-controls" role="none">
+          <label class="sr-only" for="lang-switcher">Language</label>
+          <select id="lang-switcher" aria-label="Language switcher">
+            <option value="en">English</option>
+            <option value="kh">ភាសាខ្មែរ</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Shopping Bag -->
+    <section class="bag-section">
+      <div id="bag-empty" class="muted small" style="display:none">
+        <span data-i18n="checkout.bagEmpty">Your bag is empty.</span>
+        <a href="index.html" data-i18n="checkout.continue">Continue shopping</a>
+      </div>
+
+      <div id="bag-list" class="bag-list"></div>
+    </section>
+
+    <!-- Checkout -->
+    <section class="checkout-section">
+      <h2 class="serif title-xl checkout-title" data-i18n="checkout.checkoutTitle">Checkout</h2>
+
+      <div class="grid">
+        <!-- Left: Forms -->
+        <section class="panel form-panel">
+          <h3 class="serif buyer-title" data-i18n="checkout.buyer">Buyer Information</h3>
+
+          <!-- Name + Phone on one row (stacks on mobile) -->
+          <div class="field-row two">
+            <div class="field">
+              <label id="lbl-name" for="name">
+                <span data-i18n="checkout.name">Name</span>: <span class="req">*</span>
+              </label>
+              <input id="name" name="name" type="text" autocomplete="name"
+                     placeholder="Ex: God chosen me to be the best developer" data-i18n-placeholder="checkout.ph.name" required />
+            </div>
+
+            <div class="field">
+              <label id="lbl-phone" for="phone">
+                <span data-i18n="checkout.phone">Phone Number</span>: <span class="req">*</span>
+              </label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel"
+                     placeholder="Ex: 0xx xxx xxx" data-i18n-placeholder="checkout.ph.phone" required />
+            </div>
+          </div>
+
+<div class="field">
+  <label id="lbl-province" for="province-input">
+    <span data-i18n="checkout.province">Province</span>: <span class="req">*</span>
+  </label>
+
+  <!-- Searchable Province Picker (progressive enhancement) -->
+  <div class="province-picker" id="province-picker" data-target="province">
+    <input
+      id="province-input"
+      type="text"
+      autocomplete="off"
+      role="combobox"
+      aria-expanded="false"
+      aria-owns="province-list"
+      aria-autocomplete="list"
+      placeholder="Search province…"
+      data-i18n-placeholder="checkout.ph.province"
+    />
+    <button class="pp-clear" type="button" aria-label="Clear input" title="Clear">×</button>
+    <ul id="province-list" class="province-list" role="listbox" aria-label="Province list"></ul>
+
+    <!-- Quick picks for most-used provinces -->
+    <div class="province-chips" aria-label="Quick picks">
+      <button type="button" class="chip" data-code="pp">Phnom Penh</button>
+      <button type="button" class="chip" data-code="kd">Kandal</button>
+      <button type="button" class="chip" data-code="kp">Kampot</button>
+      <button type="button" class="chip" data-code="sr">Siem Reap</button>
+    </div>
+  </div>
+
+  <!-- Keep original select (synced + acts as fallback if JS is off) -->
+  <select id="province" name="province" required>
+    <option value="" disabled selected data-i18n="checkout.ph.province">Select a province</option>
+    <option value="pp">Phnom Penh</option>
+    <option value="sr">Siem Reap</option>
+    <option value="bb">Battambang</option>
+    <option value="pv">Preah Vihear</option>
+    <option value="kg">Kampong Speu</option>
+    <option value="kc">Kampong Cham</option>
+    <option value="kt">Kratie</option>
+    <option value="od">Oddar Meanchey</option>
+    <option value="tk">Takeo</option>
+    <option value="kn">Kampong Chhnang</option>
+    <option value="ka">Kampong Thom</option>
+    <option value="kp">Kampot</option>
+    <option value="ks">Koh Kong</option>
+    <option value="kd">Kandal</option>
+    <option value="sv">Svay Rieng</option>
+    <option value="st">Stung Treng</option>
+    <option value="rt">Ratanakiri</option>
+    <option value="mn">Mondulkiri</option>
+    <option value="pa">Pailin</option>
+    <option value="pg">Prey Veng</option>
+    <option value="kao">Kep</option>
+    <option value="tb">Tboung Khmum</option>
+    <option value="bt">Banteay Meanchey</option>
+    <option value="pl">Pursat</option>
+    <option value="su">Preah Sihanouk</option>
+  </select>
+</div>
+
+
+          <div class="field">
+            <label id="lbl-note" for="note"><span data-i18n="checkout.note">Note</span>:</label>
+            <textarea id="note" name="note" rows="3"
+                      placeholder="Additional delivery notes" data-i18n-placeholder="checkout.ph.note"></textarea>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" id="tg-optin" />
+            <span class="lbl-tg" data-i18n="checkout.contactVia">Contact via</span> <span class="tg">Telegram</span>
+          </label>
+
+          <h3 class="serif payment-title" data-i18n="checkout.payment">Payment Method</h3>
+          <div class="panel payment">
+            <div class="pay-row">
+        <img src="image/KHQR.png" alt="ABA logo" class="logo-img">
+
+              <div class="pay-info">
+                <div class="pay-title" data-i18n="checkout.abaTitle">ABA KHQR</div>
+                <div class="muted small" data-i18n="checkout.abaScan">Scan to pay with any banking app</div>
+              </div>
+            </div>
+            <p class="muted xs" data-i18n="checkout.abaNote">We encourage to use ABA only for transactions.</p>
+          </div>
+
+<button id="paywayBtn" class="btn-purchase">Purchase with ABA</button>
+
+</section>
+
+<!-- Right: Summary -->
+<aside class="panel summary-panel">
+  <h3 class="summary-title" data-i18n="checkout.summary">Summary</h3>
+  <div class="summary-box">
+    <div id="summary-lines" class="summary-lines"></div>
+    <hr class="dash" />
+    <div class="row total">
+      <span data-i18n="checkout.total">Total</span>:
+      <span id="total" class="pink">$0</span>
+    </div>
+  </div>
+</aside>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="copyright">Copyright © 2025 By Darila Official</div>
+    <div class="accept-line">
+      <span class="accept-label">We Accept:</span>
+      <div class="icons">
+        <img class="pay-icon" src="image/aba.png" alt="ABA Bank logo">
+        <img class="pay-icon" src="image/acleda.png" alt="Acleda logo">
+        <img class="pay-icon" src="image/truemoney.png" alt="TrueMoney logo">
+        <img class="pay-icon" src="image/wingbank.png" alt="WingBank logo">
+        <img class="pay-icon" src="image/binance.png" alt="Binance logo">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- One clean set of scripts, in this order -->
+<script>
+  
+  // Tell checkout.telegram.js to use your Netlify Function
+  window.__TG_ORDER_ENDPOINT__='/.netlify/functions/telegram-order';
+</script>
+
+<script>window.__TG_ORDER_ENDPOINT__='/.netlify/functions/telegram-order'</script>
+
+
+<script src="checkout.js" defer></script>
+<script src="checkout.telegram.js" defer></script>
+<script src="script.js" defer></script>
+<!-- ABA-style popup -->
+<script src="payway-inline-aba.js"></script>
+
+<script>(function(){try{
+  var sel=document.getElementById('lang-switcher');
+  if(!sel){return;}
+  var initial=(localStorage.getItem('siteLang')||localStorage.getItem('lang')||'kh');
+  sel.value = initial==='kh' ? 'kh' : 'en';
+  sel.addEventListener('change', function(e){
+    var val = (e.target.value==='kh') ? 'kh' : 'en';
+    try{ localStorage.setItem('siteLang', val); localStorage.setItem('lang', val);}catch(_){}
+    if (typeof setLang==='function'){ setLang(val); } else { document.documentElement.setAttribute('lang', val==='kh'?'kh':'en'); document.body.classList.toggle('lang-kh', val==='kh'); }
+  });
+}catch(e){}})();</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# FILE: run-php-server.ps1
+# Usage:
+#   ./run-php-server.ps1                # serves current folder on port 8000
+#   ./run-php-server.ps1 -Port 8080 -Root "C:\Den\my-shop\public"
+param(
+  [int]$Port = 8000,
+  [string]$Root = "."
+)
+
+function Find-Php {
+  $php = (Get-Command php -ErrorAction SilentlyContinue)
+  if ($php) { return $php.Source }
+  if (Test-Path "C:\php-8.4.12\php.exe") { return "C:\php-8.4.12\php.exe" }
+  throw "PHP not found. Add it to PATH or install to C:\php-8.4.12"
+}
+
+$phpExe = Find-Php
+$fullRoot = Resolve-Path $Root
+Write-Host "Starting PHP dev server on http://localhost:$Port" -ForegroundColor Green
+Write-Host "Document root: $fullRoot"
+
+Start-Process $phpExe -ArgumentList @('-S',"localhost:$Port",'-t',$fullRoot) -WorkingDirectory $fullRoot
+Start-Process "http://localhost:$Port/checkout.html"
+
