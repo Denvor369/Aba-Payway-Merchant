@@ -12,14 +12,17 @@
   <link rel="stylesheet" href="styles.css?v=7" />
 
 <script src="checkout.telegram.js" defer></script>
+<script src="payway-guard-robust.js"></script>
 
   <!-- Khmer & Brand fonts -->
   <link href="https://fonts.googleapis.com/css2?v=7" rel="stylesheet" />
 <script src="checkout.js"></script>
 <script>window.PAYWAY_API_BASE = "http://localhost:3000";</script> <!-- change port if needed -->
+<script src="payway-guard-addressonly.js"></script>
 
 <script src="tg-config.js"></script>
 <script src="checkout.telegram.js"></script>
+<script src="payway-guard-min.js"></script>
 
   <!-- Page-scoped styles -->
   <link rel="stylesheet" href="checkout.css?v=7" />
@@ -229,7 +232,8 @@
             <p class="muted xs" data-i18n="checkout.abaNote">We encourage to use ABA only for transactions.</p>
           </div>
 
-<button id="paywayBtn" class="btn-purchase">Purchase with ABA</button>
+<button id="paywayBtn" class="btn-purchase" disabled>Purchase with ABA</button>
+
 
 </section>
 
